@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -23,6 +23,5 @@ dependencies {
     provided fileTree(include: ['*.jar'], dir: 'libs')
     //compile files('libs/XposedBridgeApi-54.jar')
     compile 'com.android.support:support-v4:26.0.0-alpha1'
-    compile 'org.michaelevans.colorart:library:0.0.3'
     compile 'com.android.support:palette-v7:26.0.0-alpha1'
 }

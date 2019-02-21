@@ -1,18 +1,7 @@
 package me.qiwu.MusicNotification;
 
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-
-
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 /**

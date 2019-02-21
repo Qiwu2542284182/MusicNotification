@@ -2,34 +2,25 @@ package me.qiwu.MusicNotification;
 
 import android.app.AndroidAppHelper;
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v7.graphics.Palette;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import org.michaelevans.colorart.library.ColorArt;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 
-import static android.R.attr.selectableItemBackground;
 
 
 /**
@@ -39,7 +30,7 @@ import static android.R.attr.selectableItemBackground;
 public class NotificationHook {
 
     public void init(){
-        XposedBridge.hookAllMethods(Notification.Builder.class, "build", new XC_MethodHook() {
+        XposedHelpers.findAndHookMethod(Notification.Builder.class, "build", new XC_MethodHook() {
 
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -57,7 +48,7 @@ public class NotificationHook {
                             .setContentText(subtitle)
                             .setCategory(NotificationCompat.CATEGORY_STATUS)
                             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                            .setOngoing(true)
+                            .setOngoing(notification.flags == Notification.FLAG_ONGOING_EVENT)
                             .setContent(remoteViews)
                             .setCustomBigContentView(remoteViews)
                             .setCustomContentView(remoteViews)
@@ -124,7 +115,7 @@ public class NotificationHook {
         try {
             moudleContext = context.createPackageContext(BuildConfig.APPLICATION_ID, Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            XposedBridge.log(e);
         }
         return moudleContext;
     }

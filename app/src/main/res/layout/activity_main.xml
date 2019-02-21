@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="me.qiwu.MusicNotification.MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
+
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-         />
+        android:text="
+        没有设置界面，在Xposed框架里激活生效。激活后系统音乐通知将变成安卓O样式，请在音乐软件内将通知栏样式改为系统样式，比如：网易云音乐设置--通知栏样式--系统样式，否则不生效。MIui系统配合去通知栏白边的magisk模块使用更佳"
 
+         />
+    <Button
+        android:text="Github"
+        android:onClick="github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="下载MIui去白边magisk模块"
+        android:onClick="magisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
